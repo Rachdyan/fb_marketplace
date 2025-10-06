@@ -137,7 +137,7 @@ all_product_list = [griii_dict, a6400_dict,
 
 if __name__ == "__main__":
     with SB(uc=True,
-            # headless=True,
+            headless=False,
             xvfb=True,
             proxy=proxy_string,
             # incognito=True,
@@ -146,6 +146,10 @@ if __name__ == "__main__":
         print("Opening Home Page")
         sb.driver.uc_open_with_reconnect(url,
                                          reconnect_time=5)
+        
+        sb.open(url)
+
+        # sb.activate_cdp_mode(url)
         sb.sleep(2)
 
         sb.type('[id="email"]', fb_email)
@@ -155,6 +159,7 @@ if __name__ == "__main__":
         sb.sleep(1)
 
         sb.uc_click('button[name*="login"]')
+        # sb.click('button[name*="login"]')
         sb.sleep(15)
 
         current_url = sb.driver.current_url
@@ -254,6 +259,7 @@ if __name__ == "__main__":
 
                     answer = result['code']
                     number_list = captcha_helper.pars_answer(answer)
+
 
                     # Processing for 3x3
                     if params['cols'] == 3:
@@ -359,12 +365,19 @@ if __name__ == "__main__":
             sb.sleep(2)
             sb.click('div[role="button"]')
             sb.sleep(2)
+
+            # breakpoint()
+
             sb.click('input[value="1"]')
+            
+            # sb.click('input[type="text"]')
             sb.sleep(2)
             sb.click('(//div[@role="button"])[4]')
+            # sb.click("//span[normalize-space()='Lanjutkan' or normalize-space()='Continue']")
             sb.sleep(2)
             print("Generating OTP...")
-            secret_key = 'CELYRR33TLRKVCXENLKKASQNMZ26HTIW'
+            # secret_key = 'CELYRR33TLRKVCXENLKKASQNMZ26HTIW'
+            secret_key = otp_secret
 
             try:
                 totp = pyotp.TOTP(secret_key)

@@ -77,7 +77,7 @@ class PageActions:
         :param answer_list: List of cell numbers to click.
         """
         for i in answer_list:
-            self.get_presence_element(f"//table//td[@tabindex='{i}']").click()
+            self.get_presence_element(f"//table//td[@id='{i}']").click()
         print("Cells are marked")
 
     def click_check_button(self, locator):
@@ -150,7 +150,8 @@ class CaptchaHelper:
         numbers_str = answer.split(":")[1]
         number_list = list(map(int, numbers_str.split("/")))
         # Add 3 to go to the correct index.
-        new_number_list = [i + 3 for i in number_list]
+        # new_number_list = [i + 3 for i in number_list]
+        new_number_list = [i - 1 for i in number_list]
         print("Parsed the response to a list of cell numbers")
         return new_number_list
 
