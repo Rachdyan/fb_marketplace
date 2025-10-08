@@ -146,7 +146,7 @@ if __name__ == "__main__":
         print("Opening Home Page")
         sb.driver.uc_open_with_reconnect(url,
                                          reconnect_time=5)
-        
+
         sb.open(url)
 
         # sb.activate_cdp_mode(url)
@@ -260,7 +260,6 @@ if __name__ == "__main__":
                     answer = result['code']
                     number_list = captcha_helper.pars_answer(answer)
 
-
                     # Processing for 3x3
                     if params['cols'] == 3:
                         # Click on the answers found
@@ -369,11 +368,12 @@ if __name__ == "__main__":
             # breakpoint()
 
             sb.click('input[value="1"]')
-            
+
             # sb.click('input[type="text"]')
             sb.sleep(2)
             sb.click('(//div[@role="button"])[4]')
-            # sb.click("//span[normalize-space()='Lanjutkan' or normalize-space()='Continue']")
+            # sb.click("//span[normalize-space()='Lanjutkan'
+            # or normalize-space()='Continue']")
             sb.sleep(2)
             print("Generating OTP...")
             # secret_key = 'CELYRR33TLRKVCXENLKKASQNMZ26HTIW'
